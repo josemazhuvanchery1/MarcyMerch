@@ -1,0 +1,26 @@
+{
+  "name": "marcymerch",
+  "version": "1.0.0",
+  "description": "> A marketplace for Marcy Lab students and its supporters to show out in their Marcy Lab swag!",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "nodemon":"nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josemazhuvanchery1/MarcyMerch.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josemazhuvanchery1/MarcyMerch/issues"
+  },
+  "homepage": "https://github.com/josemazhuvanchery1/MarcyMerch#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "knex": "^2.3.0",
+    "nodemon": "^2.0.20",
+    "pg": "^8.8.0"
+  }
+}
