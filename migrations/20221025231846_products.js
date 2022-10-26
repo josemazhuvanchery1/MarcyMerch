@@ -8,6 +8,7 @@
       table.string('product_name').notNullable()
       table.decimal('price').notNullable()
       table.integer('quantity').notNullable()
+      
     })
   };
   
