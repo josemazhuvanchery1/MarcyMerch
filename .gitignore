@@ -1,2 +1,3 @@
 /knexfile.js
 node_modules/
+/dbconfig.js
