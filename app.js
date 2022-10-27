@@ -3,6 +3,7 @@ const app = express();
 let cors = require('cors')
 app.use(cors())
 const pool = require('./dbconfig.js')
+const productControl = require('./Controllers/productscontrollers')
 
 
 app.use(express.json())
@@ -17,6 +18,9 @@ app.get('/customers', async(req, res)=>{
     console.log(customers)
     res.status(200).json(customers)
 })
+
+app.get('/products',productControl.getProducts)
+
 
 app.get('/customers/:id', async(req,res)=>{
     const id = req.params.id;
