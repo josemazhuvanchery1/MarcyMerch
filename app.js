@@ -11,16 +11,13 @@ app.use(express.json())
 const PORT = process.env.PORT || 8000;
 
 
-//app.get('/products',productscotrollers.getProducts)
+app.get('/products',productControl.getProducts)
 
 app.get('/customers', async(req, res)=>{
     const customers = await pool.query('SELECT * FROM customers').then(results => {return results.rows})
     console.log(customers)
     res.status(200).json(customers)
 })
-
-app.get('/products',productControl.getProducts)
-
 
 app.get('/customers/:id', async(req,res)=>{
     const id = req.params.id;

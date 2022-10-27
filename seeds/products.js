@@ -6,14 +6,14 @@ exports.seed = async function(knex) {
   // Deletes ALL existing entries
   await knex('products').del()
   await knex('products').insert([
-    {product_name: 'Hoodie', price: 60.00, quantity: 3, image:"../assets/hood1.jpg"},
-    {product_name: 'Sweatshirt', price: 56.00, quantity: 3, image:"../assets/hood2.webp"},
-    {product_name: 'Sweatpants', price: 70.00, quantity: 3, image:"../assets/hood3.webp"},
-    {product_name: 'Sweatshirt', price: 56.00, quantity: 3, image:"../assets/hood2.webp"},
-    {product_name: 'Sweatshirt', price: 56.00, quantity: 3, image:"../assets/hood2.webp"},
-    {product_name: 'Sweatshirt', price: 56.00, quantity: 3, image:"../assets/hood2.webp"},
-    {product_name: 'Sweatshirt', price: 56.00, quantity: 3, image:"../assets/hood2.webp"},
-    {product_name: 'Sweatshirt', price: 56.00, quantity: 3, image:"../assets/hood2.webp"}
+    {product_name: 'Fancy Grey Hoodie', price: 60.00, quantity: 3, image:"../assets/grey_thumbnail.png"},
+    {product_name: 'Fall Green Sweatshirt', price: 56.00, quantity: 3, image:"../assets/greensweat.jpg"},
+    {product_name: 'Stripe RedSweatpants', price: 70.00, quantity: 3, image:"../assets/stripehood.jpg"},
+    {product_name: 'White Bagpack', price: 56.00, quantity: 3, image:"../assets/WhiteBag.jpg"},
+    {product_name: 'Warm Purple Bagpack', price: 56.00, quantity: 3, image:"../assets/purpleBag_thumbnail.png"},
+    {product_name: 'Everyday Tote Bag', price: 56.00, quantity: 3, image:"../assets/ToteBag_thumbnail.png"},
+    {product_name: 'Orange Beanie', price: 56.00, quantity: 3, image:"../assets/Beenie_thumbnail.png"},
+    {product_name: 'Yellow Beanie', price: 56.00, quantity: 3, image:"../assets/yellowB.jpg"}
   ]);
   
 };
