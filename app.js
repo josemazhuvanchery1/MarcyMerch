@@ -16,6 +16,13 @@ app.get('/products',productControl.getProducts)
 app.use('/customers', userRoute)
 //app.get('/customers',userControl.getAllUsers )
 
+app.post('/products/:id', )
+
+app.get('/customers', async(req, res)=>{
+    const customers = await pool.query('SELECT * FROM customers').then(results => {return results.rows})
+    console.log(customers)
+    res.status(200).json(customers)
+})
 app.use('/customers/:id', userRoute)
 app.use('/customers/register', userRoute)
 app.use('/cutomers/login', userRoute)
