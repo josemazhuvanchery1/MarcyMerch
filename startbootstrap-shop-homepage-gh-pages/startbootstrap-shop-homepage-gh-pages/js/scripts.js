@@ -18,23 +18,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
             container.append(container1);
             container1.append(img,productInfo);
             productInfo.append(product_name,product_price,addToCart);
-
             img.src = element.image
             product_name.innerText = `${element.product_name}`
             product_price.innerText = `$${element.price}`
             addToCart.innerHTML = "Add to Cart";
-             //addToCart.setAttribute('id',`${elememt.id}`)
-
-            //addToCart.setAttribute('id',`${elememt.id}`)
-
-            
-        console.log(element.id)
-
-
-
-        
-
-                console.log(data)
+            //addToCart.setAttribute('id',`${elememt.id}`)   
+            console.log(element.id)
+            console.log(data)
             });
             
         })
