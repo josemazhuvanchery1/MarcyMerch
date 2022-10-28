@@ -12,13 +12,13 @@ function getSingleUserFromDB(id){
 
 function addUserToDB(...args){
     return pool.query('INSERT INTO customers (first_name,last_name,username,email,password) VALUES ($1, $2, $3, $4, $5) RETURNING *', args).then(results => {
-        return results.rows
+        return results.rows[0]
     })
 }
 
 function findUserFromDB(username){
     return pool.query('SELECT * FROM customers WHERE username = $1',[username]).then(results => {
-        return results.rows
+        return results.rows[0]
     })
 }
 module.exports ={

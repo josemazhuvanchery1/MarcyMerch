@@ -18,15 +18,16 @@ const getSingleUser = async(req,res)=>{
 }
 
 const addUser = async(req,res)=>{
-    const {firstName,lastName, username, email, password} = req.body
+    const {first_name,last_name, username, email, password} = req.body
     try{
         const salt = await bcrypt.genSalt()
         const hashedPassword = await bcrypt.hash(password,salt)
-        const data = await userModel.addUserToDB(firstName,lastName,username,email,hashedPassword)
+        const data = await userModel.addUserToDB(first_name,last_name,username,email,hashedPassword)
         res.status(201).json(data)
     }
     catch (err){
-        res.status(404).json({message:err})
+        console.log(err)
+        res.status(404).json({message:err.detail})
     }
     
 }
@@ -38,10 +39,16 @@ const findUser = async(req,res)=>{
         if(!user){
             res.status(404).json({message:'user not found'})
         }else{
-            res.status(200).json(user)
+            if(await bcrypt.compare(req.body.password, user.password)){
+                res.status(200).json(user)
+            }
+            else{
+                res.send("wrong password")
+            }
+
         }
     }
-    catch{
+    catch {
 
     }
 }
