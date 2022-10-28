@@ -13,6 +13,8 @@ const PORT = process.env.PORT || 8000;
 
 app.get('/products',productControl.getProducts)
 
+app.post('/products/:id', )
+
 app.get('/customers', async(req, res)=>{
     const customers = await pool.query('SELECT * FROM customers').then(results => {return results.rows})
     console.log(customers)
