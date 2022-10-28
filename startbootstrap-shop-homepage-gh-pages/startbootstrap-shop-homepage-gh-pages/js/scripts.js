@@ -23,7 +23,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             product_name.innerText = `${element.product_name}`
             product_price.innerText = `$${element.price}`
             addToCart.innerHTML = "Add to Cart";
+             //addToCart.setAttribute('id',`${elememt.id}`)
+
             //addToCart.setAttribute('id',`${elememt.id}`)
+
             
         console.log(element.id)
 
@@ -36,6 +39,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
             
         })
     }
+    
     getProducts()
    
 

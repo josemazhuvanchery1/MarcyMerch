@@ -1,6 +1,6 @@
 const pool = require('../dbconfig')
 const userModel = require('../Models/userModel')
-//const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt')
 
 const getAllUsers = async(req, res)=>{
     const customers = await userModel.getUsersFromDB();
@@ -19,14 +19,31 @@ const getSingleUser = async(req,res)=>{
 
 const addUser = async(req,res)=>{
     const {firstName,lastName, username, email, password} = req.body
-    // try{
-    //     const salt = await bcrypt.genSalt()
-    // }
-    // catch{
+    try{
+        const salt = await bcrypt.genSalt()
+        const hashedPassword = await bcrypt.hash(password,salt)
+        const data = await userModel.addUserToDB(firstName,lastName,username,email,hashedPassword)
+        res.status(201).json(data)
+    }
+    catch (err){
+        res.status(404).json({message:err})
+    }
+    
+}
 
-    // }
-    const data = await userModel.addUserToDB(firstName,lastName,username,email,password)
-    res.status(201).json(data)
+const findUser = async(req,res)=>{
+    const userName = req.body.username
+    const user = await userModel.findUserFromDB(userName)
+    try{
+        if(!user){
+            res.status(404).json({message:'user not found'})
+        }else{
+            res.status(200).json(user)
+        }
+    }
+    catch{
+
+    }
 }
 
 
@@ -34,5 +51,6 @@ const addUser = async(req,res)=>{
 module.exports = {
     getAllUsers,
     getSingleUser,
-    addUser
+    addUser,
+    findUser
 }
