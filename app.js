@@ -18,6 +18,7 @@ app.use('/customers', userRoute)
 
 app.use('/customers/:id', userRoute)
 app.use('/customers/register', userRoute)
+app.use('/cutomers/login', userRoute)
 
 app.all('*', (req, res)=>{
     res.send('Path does not exist')
