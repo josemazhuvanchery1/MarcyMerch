@@ -43,7 +43,7 @@ const findUser = async(req,res)=>{
                 res.status(200).json(user)
             }
             else{
-                res.send("wrong password")
+                res.status(404).json({message:"wrong password"})
             }
 
         }
