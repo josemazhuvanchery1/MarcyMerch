@@ -1,6 +1,6 @@
-const pool = require('../dbconfig')
-const userModel = require('../Models/userModel')
-const bcrypt = require('bcrypt')
+const pool = require('../dbconfig');
+const userModel = require('../Models/userModel');
+const bcrypt = require('bcrypt');
 
 const getAllUsers = async(req, res)=>{
     const customers = await userModel.getUsersFromDB();

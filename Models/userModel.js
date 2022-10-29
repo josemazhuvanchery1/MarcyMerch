@@ -1,4 +1,4 @@
-const pool = require('../dbconfig')
+const pool = require('../dbconfig');
 
 function getUsersFromDB(){
     return  pool.query('SELECT * FROM customers').then(results => {return results.rows})

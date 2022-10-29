@@ -31,7 +31,7 @@ const container = document.getElementById("container1")
             function addToCar(event) {
                 console.log(event.target.id)
             }
-            for(let i =0; i<product.length;i++){
+            for(let i = 0; i < product.length;i++){
                 product[i].addEventListener("click", addToCar);
 
             
