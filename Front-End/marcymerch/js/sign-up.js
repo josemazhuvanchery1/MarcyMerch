@@ -7,17 +7,21 @@ async function handleSignup(event){
     const email = document.getElementById('email').value;
     const username = document.getElementById('userName').value;
     const password = document.getElementById('pass').value;
-    console.log('hi')
-    let postRequest = {
-        method:'POST',
-        headers: {
-            'Content-Type': 'application/json'
-          },
-        body:JSON.stringify({first_name, last_name,email,username,password}),
+    if(first_name ==='' || last_name ===''|| email ===''||username===''||password ===''){
+        alert("Please enter all the fields!");
     }
-    let data = await fetch("http://localhost:8000/customers/register", postRequest)
-    let userObj = await data.json()
-   
-    if(userObj.user_id) window.location.href = "http://127.0.0.1:5501/Products_files/index.html";
-
+    else{
+        let postRequest = {
+            method:'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify({first_name, last_name,email,username,password}),
+        }
+        let data = await fetch("http://localhost:8000/customers/register", postRequest)
+        let userObj = await data.json()
+    
+        if(userObj.user_id) window.location.href = "http://127.0.0.1:5501/Front-End/marcymerch/login.html";
+        else alert("User already exist. Please Login")
+    }
 }
