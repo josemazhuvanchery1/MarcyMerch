@@ -18,7 +18,7 @@ function addUserToDB(...args){
 
 function findUserFromDB(username){
     return pool.query('SELECT * FROM customers WHERE username = $1',[username]).then(results => {
-        return results.rows[0]
+        return results.rows
     })
 }
 module.exports ={
