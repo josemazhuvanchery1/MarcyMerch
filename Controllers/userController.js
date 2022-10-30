@@ -19,26 +19,31 @@ const getSingleUser = async(req,res)=>{
 
 const addUser = async(req,res)=>{
     const {first_name,last_name, username, email, password} = req.body
-    try{
-        const salt = await bcrypt.genSalt()
-        const hashedPassword = await bcrypt.hash(password,salt)
-        const data = await userModel.addUserToDB(first_name,last_name,username,email,hashedPassword)
-        res.status(201).json(data)
+    const checkUserExist = await userModel.findUserFromDB(username)
+  
+    if(checkUserExist.length>0) res.json({message:"user already exists"})
+    else{
+        try{
+            const salt = await bcrypt.genSalt()
+            const hashedPassword = await bcrypt.hash(password,salt)
+            const data = await userModel.addUserToDB(first_name,last_name,username,email,hashedPassword)
+            res.status(201).json(data)
+        }
+        catch (err){
+            console.log(err)
+            res.status(404).send('server error')
+        }
     }
-    catch (err){
-        console.log(err)
-        res.status(404).json({message:err.detail})
-    }
-    
 }
 
 const findUser = async(req,res)=>{
     const userName = req.body.username
-    const user = await userModel.findUserFromDB(userName)
+    const users = await userModel.findUserFromDB(userName)
     try{
-        if(!user){
+        if(users.length===0){
             res.status(404).json({message:'user not found'})
         }else{
+            const user = users[0]
             if(await bcrypt.compare(req.body.password, user.password)){
                 res.status(200).json(user)
             }
