@@ -1,5 +1,9 @@
 
 const container = document.getElementById("container1")
+const productName = document.getElementById("product-name")
+const productPrice = document.getElementById("product-price")
+
+
 
    // console.log(event.target);
    
@@ -53,11 +57,15 @@ const container = document.getElementById("container1")
         })
 
     }    
+
     
     async function fetchProduct(id){
         //i need to make a new route to /products/id instead of /products
         // 8000/products returns all products but we need the specific product
-        let product = await fetch('http://localhost:8000/products').then(res => res.json());
+        let product = await fetch(`http://localhost:8000/products/${id}`).then(res => res.json());
+        productName.innerText = `${product.product_name}`
+        productPrice.innerText = `Price $${product.price}`
+
         console.log(product)
     }
     getProducts()
