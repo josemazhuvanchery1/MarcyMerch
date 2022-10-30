@@ -2,7 +2,7 @@ const pool = require('../dbconfig');
 
 
 const fillCart = (itemId) => {
-    return pool.query('INSERT INTO carts (order_id, product_id, customer_id) VALUES (3, $1, 2)', [itemId])
+    return pool.query('INSERT INTO carts (product_id, customer_id) VALUES ($1, 2) RETURNING *', [itemId])
 };
 
 
