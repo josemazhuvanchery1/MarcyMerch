@@ -1,16 +1,19 @@
+//const { checkout } = require("../routes/productRoute");
+
 /**
  * 
  * 
  * 
  * */
+ let productArrId = []
 const addItemToCart = async () => {
     const userId = Number(localStorage.getItem('id'))
-    
     let productsObj = await fetch(`http://localhost:8000/carts/${userId}`).then(res => res.json())
     let productsArr = productsObj.items;
     let totalPrice = 0;
     productsArr.forEach(product => {
-        console.log(product.product_name)
+        console.log(product.product_id)
+        productArrId.push({'id':product.product_id,'name': product.product_name, 'price': product.price})
         let cartItems = document.getElementsByClassName("cart-items")[0]
         let cartRow = document.createElement('div')
         cartRow.classList.add('cart-row')
@@ -43,4 +46,27 @@ const addItemToCart = async () => {
         }
 }
 
+function handleCheckout(){
+    let checkoutBtn = document.getElementById("checkout_btn")
+    checkoutBtn.addEventListener('click',()=>{
+        console.log(productArrId)
+        fetch('http://localhost:8000/create-checkout-session',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({productArrId})
+        }).then(res => {
+            if(res.ok) return res.json()
+            return res.json().then(json => Promise.reject(json))
+        }).then(({url}) => {
+            console.log(url)
+             window.location = url
+        }).catch(e => {
+            console.error(e.error)
+        })
+    })
+}
+
 addItemToCart();
+handleCheckout();
