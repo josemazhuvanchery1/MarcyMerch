@@ -21,16 +21,8 @@ app.use('/customers', userRoute);
 app.get('/products', productControl.getProducts);
 
 
-//user routes
-// app.use('/customers', userRoute);
-//app.get('/customers',userControl.getAllUsers )
-// app.get('/customers', async(req, res)=>{
-//     const customers = await pool.query('SELECT * FROM customers').then(results => {return results.rows})
-//     console.log(customers)
-//     res.status(200).json(customers)
-// });
-// app.use('/customers/:id', userRoute);
-// app.use('/customers/register', userRoute);
+//cart routes
+app.use('/carts', cartRoute)
 
 // all other paths
 app.all('*', (req, res)=>{
