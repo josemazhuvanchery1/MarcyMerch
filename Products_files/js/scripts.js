@@ -66,14 +66,14 @@ const productPrice = document.getElementById("product-price")
 
     
     async function fetchProduct(id){
-        //i need to make a new route to /products/id instead of /products
-        // 8000/products returns all products but we need the specific product
+        let product = await fetch(`http://localhost:8000/products/${id}`).then(res => res.json());
+        productName.innerText = `${product.product_name}`
+        productPrice.innerText = `Price $${product.price}`
 
-        let product = await fetch('http://localhost:8000/products').then(res => res.json());
-        //console.log(product)
+        console.log(product)
     }
 
-    function addProductToCart(product_id){
+     function addProductToCart(product_id){
         const userId = Number(localStorage.getItem('id'))
         console.log( userId, product_id)
         let postRequest = {
@@ -84,11 +84,11 @@ const productPrice = document.getElementById("product-price")
         }
         fetch(`http://localhost:8000/carts/${userId}/${product_id}`,postRequest)
 
-        let product = await fetch(`http://localhost:8000/products/${id}`).then(res => res.json());
-        productName.innerText = `${product.product_name}`
-        productPrice.innerText = `Price $${product.price}`
+        // let product = await fetch(`http://localhost:8000/products/${id}`).then(res => res.json());
+        // productName.innerText = `${product.product_name}`
+        // productPrice.innerText = `Price $${product.price}`
 
-        console.log(product)
+        // console.log(product)
 
     }
     getProducts()

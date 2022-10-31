@@ -20,7 +20,7 @@ const PORT = process.env.PORT || 8000;
 //user routes
 app.use('/customers', userRoute);
 // products routes
-app.get('/products', productRoute);
+app.use('/products', productRoute);
 
 
 app.get('/products/:id', async(req,res) => {
