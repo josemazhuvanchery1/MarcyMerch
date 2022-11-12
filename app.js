@@ -8,7 +8,7 @@ const pool = require('./dbconfig')
 const productRoute = require('./routes/productRoute.js');
 const userRoute = require('./routes/userRoute.js');
 const cartRoute = require('./routes/cartRoute.js');
-const { query } = require('express');
+//const { query } = require('express');
 require('dotenv').config()
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 
@@ -59,8 +59,8 @@ app.post('/create-checkout-session', async (req, res)=>{
           quantity: 1
         }
       }),
-      success_url: `${process.env.SERVER_URL}/success.html`,
-      cancel_url: `${process.env.SERVER_URL}/cancel.html`
+      success_url: `${process.env.CLIENT_URL}/success.html`,
+      cancel_url: `${process.env.CLIENT_URL}/cancel.html`
     })
     res.json({url: session.url})
   }
